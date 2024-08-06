@@ -1,5 +1,12 @@
 # GUI
-
+'''
+Code for the implementation of a GUI.
+The GUI should make the importation of the folder path, the analysis and the plot genaration easy accessible.
+Still to implement:
+    1. selection of folder path which should be analyzed
+    2. Checkbox system to decide in which way the data should be analyzed and displayed
+    3. selection/creation of the result folder where the analysis summary and plots should be stored
+'''
 import customtkinter as ctki
 from customtkinter import filedialog
 
