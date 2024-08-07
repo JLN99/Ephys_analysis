@@ -69,17 +69,56 @@ def analyze_folder(folder_path):
     '''
     result_df = {} # created an empty directory
 
-    for file in os.listdir(folder_path):
-        file_path = os.path.join(folder_path, file)
-        if file.endswith('.asc'):
+    for file in os.listdir(folder_path):            # enumerates over the files in the folder
+        file_path = os.path.join(folder_path, file) # generates the correct path to each file
+        if file.endswith('.asc'):                   # if the file ends with '.asc' it gets turned into a df via asc_to_df function
             df = asc_to_df(file_path)
-            file_name = os.path.split(file)[1]
-            print(file_name)
-            result_df[file_name] = df
-            # print(result_df)
-    return result_df
+            file_name = os.path.splitext(file)[0]
+            result_df[file_name] = df               # extends the directory with every created df
+    return result_df                                # returns df
 
 
+def create_plot(df_directory):
+    
+    for name, df in df_directory.items():
+        plt.figure()
+        for col in df.columns:
+            if col != 'Time[s]':
+                plt.plot(df['Time[s]'], df[col], label = col)
+        
+        plt.title(name)
+        plt.xlabel('Time[s]')
+        plt.ylabel('I-mon')
+        plt.legend()
+
+        plt.savefig(f"{name}.png")
+        plt.show()
+       
+        plt.close()
+
+
+# test
 folder_path = "C:\\Users\\julia\\lokales-Archiv\\PhD\\Data_analysis_python\\Ephys_analysis\\ascii-files"
-df = analyze_folder(folder_path)
-print(df)
+dfs_test = analyze_folder(folder_path)
+print(dfs_test)
+create_plot(dfs_test)
+
+
+
+# # Graph erstellen
+# plt.figure(figsize=(10, 6))
+# #loop machen, welcher über die länge aller gespeicherten Sweeps geht und diese darstellt. Außerdem erstellung von einer Legende
+# plt.plot(df['Time[s]'], df['Series_2_1'], marker='x', linestyle='-', color="black")
+# plt.plot(df['Time[s]'], df['Series_2_2'], marker='x', linestyle='-')
+# plt.plot(df['Time[s]'], df['Series_2_3'], marker='x', linestyle='-')
+# plt.plot(df['Time[s]'], df['Series_2_4'], marker='x', linestyle='-')
+# plt.plot(df['Time[s]'], df['Series_2_5'], marker='x', linestyle='-')
+# plt.plot(df['Time[s]'], df['Series_2_6'], marker='x', linestyle='-')
+# plt.plot(df['Time[s]'], df['Series_2_7'], marker='x', linestyle='-')
+# plt.plot(df['Time[s]'], df['Series_2_8'], marker='x', linestyle='-')
+
+# plt.xlabel('Time [s]')
+# plt.ylabel('I-mon [A]')
+# plt.title('Messung')
+# plt.grid(False)
+# plt.show()
