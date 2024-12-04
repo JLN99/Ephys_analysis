@@ -5,31 +5,25 @@ Starting Steps:
     2. lunching python files via the shell terminal: python filename.py 
     3. after editing or new code push to github!
 '''
+# import of needed packages and modules
 
-
-import pandas as pd
-import numpy as np
-import os
+import functions as func                # file contains the functions created
 import matplotlib.pyplot as plt
 
-import functions as func # file contains the functions created for the ascii importation
-
-path_file = 'ascii-files\\20240620_a1b2g2-EtOH-1h_zelle2.asc' # load file Path
+folder_path = 'C:\\Users\\julia\\lokales-Archiv\\PhD\\Phython-test\\files\\20240620_a1b2g2-EtOH-1h_zelle2.asc'
 
 
-# Pfad zur .asc-Datei
-df = func. parse_measurements(path_file)
+df = func.asc_to_df(folder_path)
 
-print(df.head())
-print(df.columns)
+func.max_current_per_series(df)
+
+# df.info()
+# print(df.head())
 
 
-#     # DataFrame in eine CSV-Datei speichern
-# df.to_csv('dataframe_output.csv', index=False)
 
-# # CSV-Datei öffnen (kann in einem Texteditor oder Tabellenkalkulationsprogramm geöffnet werden)
-# import os
-# os.startfile('dataframe_output.csv')
-# Graphen erstellen
-df['Time[s]'] = pd.to_numeric(df['Time[s]'], errors='coerce')
-#df['I-mon[A]"'] = pd.to_numeric(df['"I-mon[A]"'], errors='coerce')
+
+# dfs_test = func.analyze_folder(folder_path)
+# print(dfs_test)
+# func.create_plot_area_under_trace(dfs_test)
+# func.create_plot(dfs_test)
