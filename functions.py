@@ -165,6 +165,7 @@ def asc_to_df(file_path: str):
             except ValueError:
                 # If the data was not in the right format or empty the column is skipped e.g. if there is a column containing text
                 #print(f"!!!Zeile konnte nicht konvertiert werden: {line}") # advisable to use it for checking the first time a set of
+                #print(f"!!!Zeile konnte nicht konvertiert werden: {line}") # advisable to use it for checking the first time a set of
                 continue
 
         elif line.strip() == '' and series:
@@ -181,13 +182,18 @@ def asc_to_df(file_path: str):
         for df in series_df:        # Merges all df into on -> the time data is everytime the same so its only inserted once
             result_df = result_df.merge(df[["Time[s]", df.columns[-1]]], on="Time[s]")
         result_df.rename(columns={"Time[s]": "time"}, inplace=True)
+        result_df.rename(columns={"Time[s]": "time"}, inplace=True)
         return result_df        # returns the genarated df
+
+########################################################################
+
 
 ########################################################################
 
 
 
 
+def analyze_folder(folder_path: str):
 def analyze_folder(folder_path: str):
     '''
     creates a loop that iterates over the folder contant and generates from all ascii files a data frame with the function asc_to_df
@@ -211,6 +217,14 @@ def analyze_folder(folder_path: str):
 # print(comb_df)
 
 def create_plot(df_directory: pd.DataFrame):
+#test
+# file_path = 'ascii-files' #\\20240620_a1b2g2-EtOH-1h_zelle2.asc'
+# df = analyze_folder(file_path)
+# comb_df = pd.concat(df, names=['Measurment'])
+# comb_df.to_csv('testdf.csv', index=False)
+# print(comb_df)
+
+def create_plot(df_directory: pd.DataFrame):
     
     for name, df in df_directory.items():
         plt.figure()
@@ -222,6 +236,7 @@ def create_plot(df_directory: pd.DataFrame):
         plt.xlabel('Time[s]')
         plt.ylabel('I-mon')
         plt.legend()
+        plt.xticks(range(0, 11, 1)) # sets the tickrate to 1 from 1-10
         plt.xticks(range(0, 11, 1)) # sets the tickrate to 1 from 1-10
         plt.savefig(f"{name}.png")
         plt.show()
