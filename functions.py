@@ -7,7 +7,7 @@ import pandas as pd
 import numpy as np
 import os
 import matplotlib.pyplot as plt
-from scipy.integrate import simpson # Verwenden für Flächenberechnung unter der Kurve
+# from scipy.integrate import simpson # Verwenden für Flächenberechnung unter der Kurve
 
 # def asc_to_df_alt(file_path):
 #     """
@@ -96,24 +96,25 @@ def max_current_per_series(df: pd.DataFrame, r: int = 50 , timeframe_min: float 
         
         mean_IMAX = df_timeframe[column].iloc[start_index:end_index].mean()
 
-        # schnell von chatgpt: # unbedingt noch umschreiben! ist nur für ne kurze überprüfung gewesen!
-        conc = [1,2,3,4,5,6,7,8]
+        
         mean_values.append(mean_IMAX)
 
         print(mean_IMAX)
-        
-    plt.figure(figsize=(8, 6))
-    plt.plot(range(1, len(conc) + 1), mean_values, marker='o', linestyle='-', color='b')
 
-    # Achsen und Titel hinzufügen
-    plt.xlabel('Sweep Nummer')
-    plt.ylabel('Durchschnittlicher Strom (IMAX)')
-    plt.title('IMAX Mittelwerte pro Sweep')
 
-    # Anzeigen des Plots
-    plt.xticks(range(1, len(conc) + 1))
-    plt.grid(True)
-    plt.show()
+    #   conc = [1,2,3,4,5,6,7,8]  
+    # plt.figure(figsize=(8, 6))
+    # plt.plot(range(1, len(conc) + 1), mean_values, marker='o', linestyle='-', color='b')
+
+    # # Achsen und Titel hinzufügen
+    # plt.xlabel('Sweep Nummer')
+    # plt.ylabel('Durchschnittlicher Strom (IMAX)')
+    # plt.title('IMAX Mittelwerte pro Sweep')
+
+    # # Anzeigen des Plots
+    # plt.xticks(range(1, len(conc) + 1))
+    # plt.grid(True)
+    # plt.show()
     # print(df_timeframe.head())
 
 
@@ -253,14 +254,14 @@ def create_plot_area_under_trace(df_directory: pd.DataFrame): # von chatgpt unbe
                 ax.plot(time, trace, label=col)
                 
                 # Berechne die Fläche unter der Kurve (relativ zum Anfangswert)
-                area = simpson(trace - baseline, x=time)
+                # area = simpson(trace - baseline, x=time)
                 
                 # Färbe die Fläche unter der Kurve (zwischen baseline und trace)
                 ax.fill_between(time, trace, baseline, alpha=0.3)
                 
                 # Zeige die berechnete Fläche im Plot an
-                ax.text(0.05, 0.95, f'Area: {area:.2f}', transform=ax.transAxes, 
-                        verticalalignment='top', bbox=dict(facecolor='white', alpha=0.5))
+                # ax.text(0.05, 0.95, f'Area: {area:.2f}', transform=ax.transAxes, 
+                #         verticalalignment='top', bbox=dict(facecolor='white', alpha=0.5))
                 
                 # Setze Titel, Achsenbeschriftung und Legende
                 ax.set_title(f'{name} - {col}')
