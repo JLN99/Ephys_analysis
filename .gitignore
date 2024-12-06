@@ -2,3 +2,4 @@ Pipfile
 *.asc
 *.png
 *.txt
+*.csv
