@@ -1,6 +1,9 @@
-Pipfile
 *.asc
 *.png
 *.txt
 *.csv
 *.svg
+__pycache__/
+*.pyc
+*.pyo
+.Pipfile.lock
