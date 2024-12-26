@@ -9,4 +9,4 @@
 # Infos
  - Author: Julian Nausester
  - Institute: Universitätsklinik Würzburg/ Institut für Klinische Neurobioloige/AG Villmann
- - Contact: nausester_j(at)kw.de
+ - Contact: nausester_j(at)ukw.de
