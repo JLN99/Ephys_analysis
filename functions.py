@@ -194,7 +194,6 @@ def asc_to_df(file_path: str):
 
 
 def analyze_folder(folder_path: str):
-def analyze_folder(folder_path: str):
     '''
     creates a loop that iterates over the folder contant and generates from all ascii files a data frame with the function asc_to_df
     '''
@@ -209,14 +208,6 @@ def analyze_folder(folder_path: str):
     return result_df                                # returns df
 
 
-#test
-# file_path = 'ascii-files' #\\20240620_a1b2g2-EtOH-1h_zelle2.asc'
-# df = analyze_folder(file_path)
-# comb_df = pd.concat(df, names=['Measurment'])
-# comb_df.to_csv('testdf.csv', index=False)
-# print(comb_df)
-
-def create_plot(df_directory: pd.DataFrame):
 #test
 # file_path = 'ascii-files' #\\20240620_a1b2g2-EtOH-1h_zelle2.asc'
 # df = analyze_folder(file_path)
