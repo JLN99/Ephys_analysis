@@ -1,5 +1,5 @@
 """
-Functions for the data frame organisation
+Analysis functions for the data frame organisation
 """
 
 # import of packages
@@ -227,7 +227,6 @@ def create_plot(df_directory: pd.DataFrame):
         plt.xlabel('Time[s]')
         plt.ylabel('I-mon')
         plt.legend()
-        plt.xticks(range(0, 11, 1)) # sets the tickrate to 1 from 1-10
         plt.xticks(range(0, 11, 1)) # sets the tickrate to 1 from 1-10
         plt.savefig(f"{name}.png")
         plt.show()

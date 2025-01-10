@@ -7,15 +7,17 @@ Starting Steps:
 '''
 # import of needed packages and modules
 
-import functions as func                # file contains the functions created
+import analysis as analysis             # file contains analysis functions
 import matplotlib.pyplot as plt
 
-folder_path = 'C:\\Users\\julia\\lokales-Archiv\\PhD\\Phython-test\\files\\20240620_a1b2g2-EtOH-1h_zelle2.asc'
+folder_path = 'ascii-files'
 
 
-df = func.asc_to_df(folder_path)
+df = analysis.analyze_folder(folder_path)
 
-func.max_current_per_series(df)
+print(df.items())
+
+# analysis.max_current_per_series(df)
 
 # df.info()
 # print(df.head())
