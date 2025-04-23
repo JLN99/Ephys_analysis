@@ -9,18 +9,34 @@ Starting Steps:
 
 import analysis as analysis             # file contains analysis functions
 import matplotlib.pyplot as plt
+import os
+import numpy as np 
 
-folder_path = 'ascii-files'
+def read_values_from_file(file_path):
+    with open(file_path, 'r') as file:
+        values = [float(line.strip()) for line in file] 
+    return values
 
+def plot_values(values, title):
+    values_new = [v * 10000 for v in values]
+    plt.plot(values_new)
+    plt.title(title)
+    plt.xlabel('time [s]')
+    plt.ylabel('Current [nA]')
 
-df = analysis.analyze_folder(folder_path)
+    # Save the figure as an SVG file
+    plt.savefig(title + ".svg", format="svg")
 
-print(df.items())
+def main():
+    folder_path = 'ascii-files'
+    for file_name in os.listdir(folder_path):
+        if file_name.endswith('.asc'):  # Assuming ASCII files have .txt extension
+            file_path = os.path.join(folder_path, file_name)
+            values = read_values_from_file(file_path)
+            plot_values(values, f'Plot of {file_name}')
 
-# analysis.max_current_per_series(df)
-
-# df.info()
-# print(df.head())
+if __name__ == '__main__':
+    main()
 
 
 

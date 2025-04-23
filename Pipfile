@@ -23,6 +23,7 @@ six = "==1.17.0"
 tzdata = "==2024.2"
 
 [dev-packages]
+ipykernel = "*"
 
 [requires]
 python_version = "3.12"
